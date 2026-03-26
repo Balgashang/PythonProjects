@@ -1,0 +1,22 @@
+[project]
+name = "bayesian-translation-engine"
+version = "0.1.0"
+description = "Bayesian probability-weighted translation engine with Shannon entropy scoring for Chinese-English WeChat transcripts"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pyyaml>=6.0",
+    "jieba>=0.42",
+]
+
+[project.optional-dependencies]
+ckip = ["ckip-transformers>=0.3.2", "torch>=2.0"]
+llm = ["anthropic>=0.30"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+translate = "scripts.run_pipeline:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

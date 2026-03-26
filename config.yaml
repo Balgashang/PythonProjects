@@ -1,0 +1,43 @@
+# Bayesian-Shannon Translation Engine Configuration
+
+segmenter:
+  # "ckip" or "jieba" — ckip preferred, jieba as fallback
+  backend: "jieba"
+  # jieba Traditional Chinese dictionary (auto-downloaded)
+  jieba_dict: "big"
+
+parser:
+  # Regex patterns for speaker identification
+  speakers:
+    mei_hui: "MEI HUI"
+    justin: "JUSTIN"
+  # Minimum CJK character ratio to classify as zh-TW
+  cjk_threshold: 0.3
+
+bayesian:
+  # Sliding window size for discourse context (messages before/after)
+  context_window_before: 3
+  context_window_after: 2
+  # Laplace smoothing alpha for sparse priors
+  laplace_alpha: 1.0
+  # Topic model window size
+  topic_window: 10
+
+entropy:
+  # Shannon entropy thresholds for confidence tiers
+  high_confidence: 0.3
+  medium_confidence: 1.0
+  low_confidence: 2.0
+  # Max candidates to keep per message
+  max_candidates: 5
+
+translation:
+  # "rule" or "hybrid" (rule + optional LLM)
+  mode: "rule"
+  # Top-k interpretations to translate
+  top_k: 5
+
+output:
+  # Output formats to generate
+  json: true
+  annotated_transcript: true
